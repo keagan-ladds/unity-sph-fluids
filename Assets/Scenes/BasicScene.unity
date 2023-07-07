@@ -200,8 +200,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.18202552, y: 0.39076737, z: -0.07913158, w: -0.89883584}
+  m_LocalPosition: {x: 14.573193, y: 9.223078, z: -4.757066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,19 +434,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5926d897fd1ae448634d479925ed43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: {x: 1, y: 1, z: 1}
-  ParticleMaterial: {fileID: 0}
-  Particles: 1
+  Size: {x: 10, y: 10, z: 10}
+  ParticleMaterial: {fileID: 2100000, guid: 0a54a3241226302458e3c2719d0d28a3, type: 2}
+  MaxParticles: 25000
   CollisionPhysics: 0
   ParticleSize: 0.25
   VisualizeGrid: 0
   VisualizeParticles: 1
   GenerateSurfaceMesh: 0
   SurfaceMeshResolution: 1
-  k: 3.5
-  fluidDensity: 999.7
-  fluidViscosity: 1
-  IsoLevel: 1
+  k: 15
+  fluidDensity: 1
+  fluidViscosity: 1.1
+  TimeFactor: 1
 --- !u!4 &1118453438
 Transform:
   m_ObjectHideFlags: 0
@@ -462,3 +462,99 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1409213046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1409213048}
+  - component: {fileID: 1409213047}
+  m_Layer: 0
+  m_Name: Fluid Emitter #1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1409213047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409213046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69453e0036a2ee41a6cac45b5056644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FluidTarget: {fileID: 1118453436}
+  InitialVelocity: 15
+  EmitterSize: 0.75
+  ParticlesPerSecond: 500
+--- !u!4 &1409213048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409213046}
+  m_LocalRotation: {x: 0.27781588, y: 0.36497167, z: -0.1150751, w: 0.8811196}
+  m_LocalPosition: {x: 2, y: 7.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 35, y: 45, z: 0}
+--- !u!1 &1636519812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1636519814}
+  - component: {fileID: 1636519813}
+  m_Layer: 0
+  m_Name: Fluid Emitter #2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1636519813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636519812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69453e0036a2ee41a6cac45b5056644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FluidTarget: {fileID: 1118453436}
+  InitialVelocity: 15
+  EmitterSize: 0.75
+  ParticlesPerSecond: 500
+--- !u!4 &1636519814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636519812}
+  m_LocalRotation: {x: 0.1150751, y: -0.8811196, z: 0.27781588, w: 0.36497167}
+  m_LocalPosition: {x: 9, y: 7.5, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 35, y: -135, z: 0}

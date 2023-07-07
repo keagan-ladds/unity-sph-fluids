@@ -97,10 +97,10 @@ struct ForceCalculationJob : IJobParallelFor
 
                                 var deltaPosition = position - neighbourPosition;
 
-                                if (deltaPosition.sqrMagnitude < _2h_sqr)
+                                if (deltaPosition.sqrMagnitude < _2h_sqr && !Mathf.Approximately(deltaPosition.sqrMagnitude, 0f))
                                 {
                                     var deltaVelocity = velocity - neighbourVelocity;
-                                    var massDensity = ParticleMass / neighbourDensity;
+                                    var massDensity = ParticleMass / density;
                                     pressureForce += massDensity * (pressure / (density * density) + neighbourPressure / (neighbourDensity * neighbourDensity)) * (CubicSplineGradient(deltaPosition));
                                     viscosityForce += massDensity * (deltaVelocity) * (Vector3.Dot(deltaPosition, CubicSplineGradient(deltaPosition)) / (deltaPosition.sqrMagnitude + _001h2));
                                 }

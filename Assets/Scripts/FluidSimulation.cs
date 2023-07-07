@@ -24,11 +24,12 @@ public class FluidSimulation : MonoBehaviour
     private Mesh _particleMesh;
 
     public float k = 3.5f;
-    public float fluidDensity = 999.7f;
+    public float fluidDensity = 0.997f;
     public float fluidViscosity = 1f;
+    [Range(0.1f, 2f)]
+    public float TimeFactor = 1f;
 
-    private float _boundryCollisionVelocityFactor = 0.5f;
-    public float IsoLevel = 1f;
+    private float _boundryCollisionVelocityFactor = 0.33f;
     
 
     private float GridCellSize;
@@ -175,7 +176,7 @@ public class FluidSimulation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var deltaTime = Time.fixedDeltaTime;
+        var deltaTime = Time.fixedDeltaTime * TimeFactor;
 
         if (simulationJobHandle.IsCompleted)
         {
@@ -189,10 +190,6 @@ public class FluidSimulation : MonoBehaviour
                 }
             }
 
-            
-
-            
-            //_particles = _particles.SortRadixFaster(_ => _.CellHash);
             _particles.Sort((a, b) => a.CellHash.CompareTo(b.CellHash));
 
 
@@ -223,13 +220,13 @@ public class FluidSimulation : MonoBehaviour
             densityJob = new DensityCalculationJob(positions, cells, densities, pressures, fluidDensity, k, GridCellSize, GridSizeX, GridSizeY, GridSizeZ, _h, _m);
 
              
-            JobHandle densityJobHandle = densityJob.Schedule(_particles.Count, 16, indexJobHandle);
+            JobHandle densityJobHandle = densityJob.Schedule(_particles.Count, 32, indexJobHandle);
 
 
             job = new ForceCalculationJob(positions, velocities, densities, pressures, cells, forces, GridCellSize, GridSizeX, GridSizeY, GridSizeZ, fluidViscosity, _h, _m);
 
             //job.Run(_particles.Count);
-            JobHandle handle = job.Schedule(_particles.Count, 16, densityJobHandle);
+            JobHandle handle = job.Schedule(_particles.Count, 32, densityJobHandle);
 
             integrationJob = new IntegrationCalculationJob
             {

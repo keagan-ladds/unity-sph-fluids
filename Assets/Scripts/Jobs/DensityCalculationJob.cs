@@ -86,7 +86,7 @@ struct DensityCalculationJob : IJobParallelFor
                                 var neighbourPosition = Position[j];
                                 var deltaPosition = position - neighbourPosition;
 
-                                if (deltaPosition.sqrMagnitude < _2h_sqr)
+                                if (deltaPosition.sqrMagnitude < _2h_sqr && !Mathf.Approximately(deltaPosition.sqrMagnitude, 0f))
                                 {
                                     density += ParticleMass * CubicSpline(deltaPosition.magnitude);
                                 }

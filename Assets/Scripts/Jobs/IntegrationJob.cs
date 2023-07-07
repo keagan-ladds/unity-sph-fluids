@@ -26,17 +26,16 @@ struct IntegrationCalculationJob : IJobParallelFor
 
         force += Force[index];
 
+        var acceleration = (force / ParticleMass);
+        var velocity = Velocity[index];
         // Calculate the velocity as a result of this force
 
-        Vector3 velocity = Velocity[index] + (force / ParticleMass) * DeltaTime;
+        velocity += acceleration * DeltaTime;
 
-        // Calculate the position as a result of this velocity
 
         Vector3 pos = Position[index] + velocity * DeltaTime;
 
-        // As a crude first attempt, prevent the position of particle extending further than the simulation bounds
-
-        var previousVelocity = Velocity[index];
+        //velocity += acceleration * DeltaTime * 0.5f;
 
         Vector3 finalVelocity = velocity;
         Vector3 finalPos = pos;
